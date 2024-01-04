@@ -20,7 +20,6 @@ From: ubuntu:22.04.3
   echo "export R_VERSION=${R_VERSION}" >> $SINGULARITY_ENVIRONMENT
 
   # Get dependencies
-  export DEBIAN_FRONTEND=noninteractive
   apt-get update
   apt-get install -y --no-install-recommends \
     locales
