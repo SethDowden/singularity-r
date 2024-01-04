@@ -20,8 +20,9 @@ From: ubuntu:22.04.3
   echo "export R_VERSION=${R_VERSION}" >> $SINGULARITY_ENVIRONMENT
 
   # Get dependencies
+  export DEBIAN_FRONTEND=noninteractive
   apt-get update
-  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  apt-get install -y --no-install-recommends \
     locales
 
   # Configure default locale
@@ -33,7 +34,7 @@ From: ubuntu:22.04.3
 
   # Install R
   apt-get update
-  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  apt-get install -y --no-install-recommends \
     software-properties-common \
     dirmngr \
     wget
@@ -41,7 +42,7 @@ From: ubuntu:22.04.3
     tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
   add-apt-repository \
     "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  apt-get install -y --no-install-recommends \
     r-base=${R_VERSION}* \
     r-base-core=${R_VERSION}* \
     r-base-dev=${R_VERSION}* \
